@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -21,36 +22,72 @@
 </head>
 
 <body>
-<div id="app">
-    <div class="main-wrapper">
+    <div id="app">
+        <div class="main-wrapper">
+
+
+            @include('Admin.layout.nav')
+
+
+            @include('Admin.layout.sidebar')
+
+
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        <h1>@yield('heading')</h1>
+                        <div class="ml-auto">
+                            @yield('button')
+                            {{-- <a href="" class="btn btn-primary"><i class="fas fa-plus"></i> Button</a> --}}
+                        </div>
+                    </div>
+
+                    @yield('main_content')
+
+                </section>
+            </div>
+
+
+        </div>
+    </div>
+
+    @include('Admin.layout.scripts_footer')
 
     
-        @include('Admin.layout.nav')
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                iziToast.error({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ $error }}',
+                });
+            </script>
+        @endforeach
+    @endif
 
-        @include('Admin.layout.sidebar')
+    @if (session()->get('error'))
+        <script>
+            iziToast.error({
+                title: '',
+                position: 'topRight',
+                message: '{{ session()->get('error') }}',
+            });
+        </script>
+    @endif
 
-  
-        <div class="main-content">
-            <section class="section">
-                <div class="section-header">
-                    <h1>@yield('heading')</h1>
-                    <div class="ml-auto">
-                        @yield('button')
-                        {{-- <a href="" class="btn btn-primary"><i class="fas fa-plus"></i> Button</a> --}}
-                    </div>
-                </div>
-           
-                @yield('main_content')
+    @if (session()->get('success'))
+    <script>
+        iziToast.success({
+            title: '',
+            position: 'topRight',
+            message: '{{ session()->get('success') }}',
+        });
+    </script>
+@endif
 
-            </section>
-        </div>
-
-
-    </div>
-</div>
-
-@include('Admin.layout.scripts_footer')
 
 </body>
+
 </html>
