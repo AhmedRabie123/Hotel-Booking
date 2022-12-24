@@ -11,6 +11,9 @@
 
             <li class="active"><a class="nav-link" href="{{ route('admin_home') }}"><i class="fas fa-hand-point-right"></i> <span>Dashboard</span></a></li>
 
+            <li class=""><a class="nav-link" href="{{ route('admin_slide_view') }}"><i class="fas fa-hand-point-right"></i> <span>sliders</span></a></li>
+
+
             <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Dropdown Items</span></a>
                 <ul class="dropdown-menu">

@@ -17,6 +17,7 @@ use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminSlideController;
 
 
 
@@ -48,6 +49,12 @@ route::post('admin/reset-password/submit', [AdminLoginController::class, 'reset_
 route::get('admin/edit-profile', [AdminProfileController::class, 'admin_profile'])->name('admin_edit_profile')->middleware('admin:admin');
 route::post('admin/profile-submit', [AdminProfileController::class, 'profile_submit'])->name('admin_profile_submit')->middleware('admin:admin');
 
+/* Admin Slider Route */
 
-
+route::get('admin/slide-view', [AdminSlideController::class, 'index'])->name('admin_slide_view')->middleware('admin:admin');
+route::get('admin/slide-create', [AdminSlideController::class, 'slide_create'])->name('admin_slide_create')->middleware('admin:admin');
+route::post('admin/slide-store', [AdminSlideController::class, 'slide_store'])->name('admin_slide_store')->middleware('admin:admin');
+route::get('admin/slide-edit/{id}', [AdminSlideController::class, 'slide_edit'])->name('admin_slide_edit')->middleware('admin:admin');
+route::post('admin/slide-update/{id}', [AdminSlideController::class, 'slide_update'])->name('admin_slide_update')->middleware('admin:admin');
+route::get('admin/slide-delete/{id}', [AdminSlideController::class, 'slide_delete'])->name('admin_slide_delete')->middleware('admin:admin');
 
