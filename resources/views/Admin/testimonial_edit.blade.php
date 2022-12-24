@@ -1,9 +1,9 @@
 @extends('Admin.layout.app')
 
-@section('heading', 'Edit Slider')
+@section('heading', 'Edit Testimonials')
 
 @section('button')
-    <a href="{{ route('admin_slide_view') }}" class="btn btn-primary"><i class="fa fa-eye"></i> Slide view</a>
+    <a href="{{ route('admin_testimonial_view') }}" class="btn btn-primary"><i class="fa fa-eye"></i> Testimonials view</a>
 @endsection
 
 @section('main_content')
@@ -13,7 +13,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('admin_slide_update', $slide_single->id) }}" method="post"
+                        <form action="{{ route('admin_testimonial_update', $testimonial_single->id) }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
@@ -22,7 +22,7 @@
                                     <div class="mb-4">
                                         <label class="form-label">Existing Photo </label>
                                         <div>
-                                            <img src="{{ asset('uploads/' . $slide_single->photo) }}" alt="" class="w_200">
+                                            <img src="{{ asset('uploads/' . $testimonial_single->photo) }}" alt="" class="w_200">
                                         </div>
                                     </div>
                                     <div class="mb-4">
@@ -30,24 +30,21 @@
                                         <input type="file" class="form-control mt_10" name="photo">
                                     </div>
                                     <div class="mb-4">
-                                        <label class="form-label">Heading</label>
-                                        <input type="text" class="form-control" name="heading"
-                                            value="{{ $slide_single->heading }}">
+                                        <label class="form-label">Name *</label>
+                                        <input type="text" class="form-control" name="name"
+                                            value="{{ $testimonial_single->name }}">
                                     </div>
                                     <div class="mb-4">
-                                        <label class="form-label">text</label>
-                                        <textarea name="text" class="form-control snote" cols="30" rows="10">{{ $slide_single->text }}</textarea>
+                                        <label class="form-label">Designation *</label>
+                                        <input type="text" class="form-control" name="designation"
+                                        value="{{ $testimonial_single->designation }}">
                                     </div>
                                     <div class="mb-4">
-                                        <label class="form-label">Button Text</label>
-                                        <input type="text" class="form-control" name="button_text"
-                                            value="{{ $slide_single->button_text }}">
+                                        <label class="form-label">Comment *</label>
+                                        <textarea name="comment" class="form-control snote" cols="30" rows="10">{{ $testimonial_single->comment }}</textarea>
+
                                     </div>
-                                    <div class="mb-4">
-                                        <label class="form-label">Button Url</label>
-                                        <input type="text" class="form-control" name="button_url"
-                                            value="{{ $slide_single->button_url }}">
-                                    </div>
+                                   
                                     <div class="mb-4">
                                         <label class="form-label"></label>
                                         <button type="submit" class="btn btn-primary">Update</button>

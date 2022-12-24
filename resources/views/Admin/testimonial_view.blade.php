@@ -1,9 +1,9 @@
 @extends('Admin.layout.app')
 
-@section('heading', 'View Slides')
+@section('heading', 'View Testimonials')
 
 @section('button')
-  <a href="{{ route('admin_slide_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Slide</a> 
+  <a href="{{ route('admin_testimonial_create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Testimonials</a> 
 @endsection
 
 @section('main_content')
@@ -19,21 +19,24 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>Photo</th>
+                                        <th>name</th>
+                                        <th>Designation</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($sliders as $row)
+                                    @foreach ($testimonials as $row)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <img src="{{ asset('uploads/'. $row->photo) }}" alt="" class="w_200">
+                                                <img src="{{ asset('uploads/'. $row->photo) }}" alt="" class="w_100">
                                             </td>
-
+                                            <td>{{ $row->name }}</td>
+                                            <td>{{ $row->designation }}</td>
                                             <td class="pt_10 pb_10">
-                                                <a href="{{ route('admin_slide_edit', $row->id) }}" class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('admin_slide_delete', $row->id) }}" class="btn btn-danger"
+                                                <a href="{{ route('admin_testimonial_edit', $row->id) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('admin_testimonial_delete', $row->id) }}" class="btn btn-danger"
                                                     onClick="return confirm('Are you sure?');">Delete</a>
                                             </td>
 

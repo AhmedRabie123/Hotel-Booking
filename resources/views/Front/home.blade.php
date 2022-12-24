@@ -77,100 +77,27 @@
     <div class="home-feature">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-clock-o"></i></div>
-                        <div class="text">
-                            <h2>24 hour Room service</h2>
-                            <p>
-                                If you find a lower online rate, we will match it and give you an additional 25% off on your
-                                stay.
-                            </p>
+
+                @foreach ($features as $item)
+                    <div class="col-md-3">
+                        <div class="inner">
+                            <div class="icon"><i class="{{ $item->icon }}"></i></div>
+                            <div class="text">
+                                @if ($item->heading != '')
+                                    <h2>{{ $item->heading }}</h2>
+                                @endif
+                                @if ($item->text != '')
+                                    <p>
+                                        {!! nl2br($item->text) !!}
+                                    </p>
+                                @endif
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-wifi"></i></div>
-                        <div class="text">
-                            <h2>Free Wifi</h2>
-                            <p>
-                                If you find a lower online rate, we will match it and give you an additional 25% off on your
-                                stay.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-superpowers"></i></div>
-                        <div class="text">
-                            <h2>Enjoy Free Nights</h2>
-                            <p>
-                                If you find a lower online rate, we will match it and give you an additional 25% off on your
-                                stay.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-money"></i></div>
-                        <div class="text">
-                            <h2>Save up to 40%</h2>
-                            <p>
-                                Members get access to an exclusive discounts on Radissonblu.com. Not a member yet? Hurry Up!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-coffee"></i></div>
-                        <div class="text">
-                            <h2>Complimentary Breakfast</h2>
-                            <p>
-                                If you find a lower online rate, we will match it and give you an additional 25% off on your
-                                stay.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-crosshairs"></i></div>
-                        <div class="text">
-                            <h2>Swimming Pool</h2>
-                            <p>
-                                If you find a lower online rate, we will match it and give you an additional 25% off on your
-                                stay.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-cubes"></i></div>
-                        <div class="text">
-                            <h2>Gym and Fitness</h2>
-                            <p>
-                                If you find a lower online rate, we will match it and give you an additional 25% off on your
-                                stay.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="inner">
-                        <div class="icon"><i class="fa fa-cutlery"></i></div>
-                        <div class="text">
-                            <h2>Top Class Restaurant</h2>
-                            <p>
-                                Members get access to an exclusive discounts on Radissonblu.com. Not a member yet? Hurry Up!
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
         </div>
     </div>
@@ -337,38 +264,25 @@
             <div class="row">
                 <div class="col-12">
                     <div class="testimonial-carousel owl-carousel">
-                        <div class="item">
-                            <div class="photo">
-                                <img src="uploads/t1.jpg" alt="">
+
+                        @foreach ($testimonials as $item)
+                            <div class="item">
+                                <div class="photo">
+                                    <img src="{{ asset('uploads/' . $item->photo) }}" alt="">
+                                </div>
+                                <div class="text">
+                                    <h4>{{ $item->name }}</h4>
+                                    <p>{{ $item->designation }}</p>
+                                </div>
+                                <div class="description">
+                                    <p>
+                                        {!! nl2br($item->comment) !!}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="text">
-                                <h4>Robert Krol</h4>
-                                <p>CEO, ABC Company</p>
-                            </div>
-                            <div class="description">
-                                <p>
-                                    Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum
-                                    has. Latine propriae quo no, unum ridens. Lorem ipsum dolor sit amet, an labores
-                                    explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="photo">
-                                <img src="uploads/t2.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h4>Sal Harvey</h4>
-                                <p>Director, DEF Company</p>
-                            </div>
-                            <div class="description">
-                                <p>
-                                    Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum
-                                    has. Latine propriae quo no, unum ridens. Lorem ipsum dolor sit amet, an labores
-                                    explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens.
-                                </p>
-                            </div>
-                        </div>
+                        @endforeach
+
+
                     </div>
                 </div>
             </div>
