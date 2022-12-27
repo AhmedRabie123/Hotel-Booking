@@ -97,15 +97,15 @@
                                     <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="photo-gallery.html" class="nav-link">Photo Gallery</a>
+                                            <a href="{{ route('photo') }}" class="nav-link">Photo Gallery</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="video-gallery.html" class="nav-link">Video Gallery</a>
+                                            <a href="{{ route('video') }}" class="nav-link">Video Gallery</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="blog.html" class="nav-link">Blog</a>
+                                    <a href="{{ route('blog') }}" class="nav-link">Blog</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact</a>
@@ -132,7 +132,7 @@
                             <ul class="useful-links">
                                 <li><a href="rooms.html">Rooms & Suites</a></li>
                                 <li><a href="photo-gallery.html">Photo Gallery</a></li>
-                                <li><a href="blog.html">Blog</a></li>
+                                <li><a href="{{ route('blog') }}">Blog</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>
