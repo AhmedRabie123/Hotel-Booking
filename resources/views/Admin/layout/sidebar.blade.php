@@ -14,13 +14,14 @@
 
 
 
-            {{-- <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Dropdown Items</span></a>
+            <li class="nav-item dropdown {{  Request::is('admin/about-page') ? 'active' : ''  }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Home
+                        Page</span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href=""><i class="fa fa-angle-right"></i> Item 1</a></li>
-                    <li class=""><a class="nav-link" href=""><i class="fa fa-angle-right"></i> Item 2</a></li>
+                    <li class="{{ Request::is('admin/about-page') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_about_page') }}"><i class="fa fa-angle-right"></i> About Page</a></li>
                 </ul>
-            </li> --}}
+            </li>
 
             <li class="{{ Request::is('admin/slide-view') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_slide_view') }}"><i class="fa fa-hand-o-right"></i> <span>slide</span></a>

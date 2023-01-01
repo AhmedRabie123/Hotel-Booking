@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminFaqController;
+use App\Http\Controllers\Admin\AdminPageController;
 
 
 
@@ -135,7 +136,10 @@ route::get('admin/faq-edit/{id}', [AdminFaqController::class, 'faq_edit'])->name
 route::post('admin/faq-update/{id}', [AdminFaqController::class, 'faq_update'])->name('admin_faq_update')->middleware('admin:admin');
 route::get('admin/faq-delete/{id}', [AdminFaqController::class, 'faq_delete'])->name('admin_faq_delete')->middleware('admin:admin');
 
+/* Admin Page Route */
 
+route::get('admin/about-page', [AdminPageController::class, 'about'])->name('admin_about_page')->middleware('admin:admin');
+route::post('admin/page-about-update', [AdminPageController::class, 'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
 
 
 

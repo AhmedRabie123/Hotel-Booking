@@ -1,38 +1,26 @@
 @extends('Front.layout.app')
 
 @section('main_content')
-
-<div class="page-top">
-    <div class="bg" style="background-image: url({{ asset('uploads/n1.jpg') }})"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>About Us</h2>
+    <div class="page-top">
+        <div class="bg" style="background-image: url({{ asset('uploads/n1.jpg') }})"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>{{ $about_data->about_heading }}</h2>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="page-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic iure delectus, aperiam eius sed suscipit corporis quas, nisi dicta harum excepturi quis est id deserunt a, ipsa autem in distinctio.
-                </p>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        {!! nl2br($about_data->about_content) !!}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
 @endsection
