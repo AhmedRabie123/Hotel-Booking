@@ -14,12 +14,28 @@
 
 
 
-            <li class="nav-item dropdown {{  Request::is('admin/about-page') ? 'active' : ''  }}">
+            <li
+                class="nav-item dropdown {{ Request::is('admin/about-page') || Request::is('admin/terms-page') || Request::is('admin/privacy-page') || Request::is('admin/contact-page') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
+
                     <li class="{{ Request::is('admin/about-page') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_about_page') }}"><i class="fa fa-angle-right"></i> About Page</a></li>
+
+                    <li class="{{ Request::is('admin/terms-page') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_terms_page') }}"><i class="fa fa-angle-right"></i> Terms &
+                            Conditions</a></li>
+
+                    <li class="{{ Request::is('admin/privacy-page') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_privacy_page') }}"><i class="fa fa-angle-right"></i> Privacy
+                            Policy</a></li>
+
+                            <li class="{{ Request::is('admin/contact-page') ? 'active' : '' }}"><a class="nav-link"
+                                href="{{ route('admin_contact_page') }}"><i class="fa fa-angle-right"></i> Contact Page
+                                </a></li>
+
+
                 </ul>
             </li>
 

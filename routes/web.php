@@ -11,6 +11,9 @@ use App\Http\Controllers\Front\PostController;
 use App\Http\Controllers\Front\PhotoController;
 use App\Http\Controllers\Front\VideoController;
 use App\Http\Controllers\Front\FaqController;
+use App\Http\Controllers\Front\TermsController;
+use App\Http\Controllers\Front\PrivacyController;
+use App\Http\Controllers\Front\ContactController;
 
 
 
@@ -54,6 +57,26 @@ route::get('video', [VideoController::class, 'index'])->name('video');
 
 // FAQ Page
 route::get('faq', [FaqController::class, 'index'])->name('faq');
+
+// Terms & Conditions Page
+route::get('terms-and-condition', [TermsController::class, 'index'])->name('terms');
+
+// Privacy Policy Page
+route::get('privacy-policy', [PrivacyController::class, 'index'])->name('privacy');
+
+// Contact Page
+route::get('contact', [ContactController::class, 'index'])->name('contact');
+
+// Contact Send E-Mail Page
+route::post('contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
+
+
+
+
+
+
+
+
 
 /* Admin Home Route */
 route::get('admin/home', [AdminHomeController::class, 'index'])->name('admin_home')->middleware('admin:admin');
@@ -136,30 +159,25 @@ route::get('admin/faq-edit/{id}', [AdminFaqController::class, 'faq_edit'])->name
 route::post('admin/faq-update/{id}', [AdminFaqController::class, 'faq_update'])->name('admin_faq_update')->middleware('admin:admin');
 route::get('admin/faq-delete/{id}', [AdminFaqController::class, 'faq_delete'])->name('admin_faq_delete')->middleware('admin:admin');
 
-/* Admin Page Route */
+/* Admin Page About Route */
 
 route::get('admin/about-page', [AdminPageController::class, 'about'])->name('admin_about_page')->middleware('admin:admin');
 route::post('admin/page-about-update', [AdminPageController::class, 'about_update'])->name('admin_page_about_update')->middleware('admin:admin');
 
+/* Admin Page Terms Route */
 
+route::get('admin/terms-page', [AdminPageController::class, 'terms'])->name('admin_terms_page')->middleware('admin:admin');
+route::post('admin/page-terms-update', [AdminPageController::class, 'terms_update'])->name('admin_page_terms_update')->middleware('admin:admin');
 
+/* Admin Page Privacy Policy Route */
 
+route::get('admin/privacy-page', [AdminPageController::class, 'privacy'])->name('admin_privacy_page')->middleware('admin:admin');
+route::post('admin/page-privacy-update', [AdminPageController::class, 'privacy_update'])->name('admin_page_privacy_update')->middleware('admin:admin');
 
+/* Admin Page Contact Route */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+route::get('admin/contact-page', [AdminPageController::class, 'contact'])->name('admin_contact_page')->middleware('admin:admin');
+route::post('admin/page-contact-update', [AdminPageController::class, 'contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
 
 
 
