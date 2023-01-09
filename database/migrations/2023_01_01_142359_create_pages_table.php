@@ -27,6 +27,23 @@ return new class extends Migration
             $table->string('contact_heading');
             $table->text('contact_map')->nullable();
             $table->string('contact_status');
+            $table->string('photo_gallery_heading');
+            $table->string('photo_gallery_status');
+            $table->string('video_gallery_heading');
+            $table->string('video_gallery_status');
+            $table->string('faq_heading');
+            $table->string('faq_status');
+            $table->string('blog_heading');
+            $table->string('blog_status');
+            $table->string('cart_heading');
+            $table->string('cart_status');
+            $table->string('checkout_heading');
+            $table->string('checkout_status');
+            $table->string('payment_heading');
+            $table->string('signup_heading');
+            $table->string('signup_status');
+            $table->string('signin_heading');
+            $table->string('signin_status');
             $table->timestamps();
         });
     }

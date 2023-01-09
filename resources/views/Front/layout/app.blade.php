@@ -43,10 +43,24 @@
                 </div>
                 <div class="col-md-6 right-side">
                     <ul class="right">
-                        <li class="menu"><a href="cart.html">Cart</a></li>
-                        <li class="menu"><a href="checkout.html">Checkout</a></li>
-                        <li class="menu"><a href="signup.html">Sign Up</a></li>
-                        <li class="menu"><a href="login.html">Login</a></li>
+
+                        @if ($global_page_data->cart_status == 'Show')
+                            <li class="menu"><a href="cart.html">{{ $global_page_data->cart_heading }}</a></li>
+                        @endif
+
+                        @if ($global_page_data->checkout_status == 'Show')
+                            <li class="menu"><a href="checkout.html">{{ $global_page_data->checkout_heading }}</a>
+                            </li>
+                        @endif
+
+                        @if ($global_page_data->signup_status == 'Show')
+                            <li class="menu"><a href="signup.html">{{ $global_page_data->signup_heading }}</a></li>
+                        @endif
+
+                        @if ($global_page_data->signin_status == 'Show')
+                            <li class="menu"><a href="login.html">{{ $global_page_data->signin_heading }}</a></li>
+                        @endif
+
                     </ul>
                 </div>
             </div>
@@ -103,20 +117,35 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
-                                <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="{{ route('photo') }}" class="nav-link">Photo Gallery</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{ route('video') }}" class="nav-link">Video Gallery</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('blog') }}" class="nav-link">Blog</a>
-                            </li>
+
+                            @if ($global_page_data->photo_gallery_status == 'Show' || $global_page_data->video_gallery_status == 'Show')
+                                <li class="nav-item">
+                                    <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
+                                    <ul class="dropdown-menu">
+                                        @if ($global_page_data->photo_gallery_status == 'Show')
+                                            <li class="nav-item">
+                                                <a href="{{ route('photo') }}"
+                                                    class="nav-link">{{ $global_page_data->photo_gallery_heading }}</a>
+                                            </li>
+                                        @endif
+
+                                        @if ($global_page_data->video_gallery_status == 'Show')
+                                            <li class="nav-item">
+                                                <a href="{{ route('video') }}"
+                                                    class="nav-link">{{ $global_page_data->video_gallery_heading }}</a>
+                                            </li>
+                                        @endif
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if ($global_page_data->blog_status == 'Show')
+                                <li class="nav-item">
+                                    <a href="{{ route('blog') }}"
+                                        class="nav-link">{{ $global_page_data->blog_heading }}</a>
+                                </li>
+                            @endif
 
                             @if ($global_page_data->contact_status == 'Show')
                                 <li class="nav-item">
@@ -145,9 +174,20 @@
                     <div class="item">
                         <h2 class="heading">Site Links</h2>
                         <ul class="useful-links">
-                            <li><a href="{{ route('photo') }}">Photo Gallery</a></li>
-                            <li><a href="{{ route('video') }}">Video Gallery</a></li>
-                            <li><a href="{{ route('blog') }}">Blog</a></li>
+
+                            @if ($global_page_data->photo_gallery_status == 'Show')
+                                <li><a href="{{ route('photo') }}">{{ $global_page_data->photo_gallery_heading }}</a>
+                                </li>
+                            @endif
+
+                            @if ($global_page_data->video_gallery_status == 'Show')
+                                <li><a href="{{ route('video') }}">{{ $global_page_data->video_gallery_heading }}</a>
+                                </li>
+                            @endif
+
+                            @if ($global_page_data->blog_status == 'Show')
+                                <li><a href="{{ route('blog') }}">{{ $global_page_data->blog_heading }}</a></li>
+                            @endif
 
                             @if ($global_page_data->contact_status == 'Show')
                                 <li><a href="{{ route('contact') }}">{{ $global_page_data->contact_heading }}</a></li>
@@ -171,7 +211,10 @@
                                 </li>
                             @endif
 
-                            <li><a href="{{ route('faq') }}">FAQ</a></li>
+                            @if ($global_page_data->faq_status == 'Show')
+                                <li><a href="{{ route('faq') }}">{{ $global_page_data->faq_heading }}</a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
@@ -221,9 +264,12 @@
                         <p>
                             In order to get the latest news and other great items, please subscribe us here:
                         </p>
-                        <form action="" method="post">
+                        <form action="{{ route('subscriber_send_email') }}" method="post"
+                            class="form_Subscribe_ajax">
+                            @csrf
                             <div class="form-group">
-                                <input type="text" name="" class="form-control">
+                                <input type="text" name="email" class="form-control">
+                                <span class="text-danger error-text email_error"></span>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="Subscribe Now">
@@ -245,6 +291,84 @@
     </div>
 
     @include('Front.layout.scripts_footer')
+
+
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                iziToast.error({
+                    title: '',
+                    position: 'topRight',
+                    message: '{{ $error }}',
+                });
+            </script>
+        @endforeach
+    @endif
+
+    @if (session()->get('error'))
+        <script>
+            iziToast.error({
+                title: '',
+                position: 'topRight',
+                message: '{{ session()->get('error') }}',
+            });
+        </script>
+    @endif
+
+    @if (session()->get('success'))
+        <script>
+            iziToast.success({
+                title: '',
+                position: 'topRight',
+                message: '{{ session()->get('success') }}',
+            });
+        </script>
+    @endif
+
+
+
+
+
+
+    <script>
+        (function($) {
+            $(".form_Subscribe_ajax").on('submit', function(e) {
+                e.preventDefault();
+                $('#loader').show();
+                var form = this;
+                $.ajax({
+                    url: $(form).attr('action'),
+                    method: $(form).attr('method'),
+                    data: new FormData(form),
+                    processData: false,
+                    dataType: 'json',
+                    contentType: false,
+                    beforeSend: function() {
+                        $(form).find('span.error-text').text('');
+                    },
+                    success: function(data) {
+                        $('#loader').hide();
+                        if (data.code == 0) {
+                            $.each(data.error_message, function(prefix, val) {
+                                $(form).find('span.' + prefix + '_error').text(val[0]);
+                            });
+                        } else if (data.code == 1) {
+                            $(form)[0].reset();
+                            iziToast.success({
+                                title: '',
+                                position: 'topRight',
+                                message: data.success_message,
+                            });
+                        }
+
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
+    <div id="loader"></div>
+
 
 </body>
 

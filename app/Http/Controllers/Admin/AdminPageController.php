@@ -84,5 +84,165 @@ class AdminPageController extends Controller
 
     }
 
+    public function photo_gallery()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_photo_gallery', compact('page_data'));
+    }
+
+    public function photo_gallery_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->photo_gallery_heading = $request->photo_gallery_heading;
+        $page_data->photo_gallery_status = $request->photo_gallery_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Photo Gallery Page Updated Successfully');
+
+    }
+
+    public function video_gallery()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_video_gallery', compact('page_data'));
+    }
+
+    public function video_gallery_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->video_gallery_heading = $request->video_gallery_heading;
+        $page_data->video_gallery_status = $request->video_gallery_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Video Gallery Page Updated Successfully');
+
+    }
+
+     public function faq()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_faq', compact('page_data'));
+    }
+
+    public function faq_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->faq_heading = $request->faq_heading;
+        $page_data->faq_status = $request->faq_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'FAQ Page Updated Successfully');
+
+    }
+
+    public function blog()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_blog', compact('page_data'));
+    }
+
+    public function blog_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->blog_heading = $request->blog_heading;
+        $page_data->blog_status = $request->blog_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Blog Page Updated Successfully');
+
+    }
+
+    public function cart()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_cart', compact('page_data'));
+    }
+
+    public function cart_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->cart_heading = $request->cart_heading;
+        $page_data->cart_status = $request->cart_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Cart Page Updated Successfully');
+
+    }
+
+    public function checkout()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_checkout', compact('page_data'));
+    }
+
+    public function checkout_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->checkout_heading = $request->checkout_heading;
+        $page_data->checkout_status = $request->checkout_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Checkout Page Updated Successfully');
+
+    }
+
+    public function payment()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_payment', compact('page_data'));
+    }
+
+    public function payment_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->payment_heading = $request->payment_heading;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Payment Page Updated Successfully');
+
+    }
+
+       public function signup()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_signup', compact('page_data'));
+    }
+
+    public function signup_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->signup_heading = $request->signup_heading;
+        $page_data->signup_status = $request->signup_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Sign Up Page Updated Successfully');
+
+    }
+
+    public function signin()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_signin', compact('page_data'));
+    }
+
+    public function signin_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->signin_heading = $request->signin_heading;
+        $page_data->signin_status = $request->signin_status;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Sign In Page Updated Successfully');
+
+    }
 
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Front\FaqController;
 use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\SubscriberController;
 
 
 
@@ -32,6 +33,7 @@ use App\Http\Controllers\Admin\AdminPhotoController;
 use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
 
 
 
@@ -70,7 +72,9 @@ route::get('contact', [ContactController::class, 'index'])->name('contact');
 // Contact Send E-Mail Page
 route::post('contact/send-email', [ContactController::class, 'send_email'])->name('contact_send_email');
 
-
+// Subscribe Send E-Mail 
+route::post('subscriber/send-email', [SubscriberController::class, 'send_email'])->name('subscriber_send_email');
+route::get('subscriber/verify/{email}/{token}', [SubscriberController::class, 'verify'])->name('subscriber_verify');
 
 
 
@@ -178,6 +182,140 @@ route::post('admin/page-privacy-update', [AdminPageController::class, 'privacy_u
 
 route::get('admin/contact-page', [AdminPageController::class, 'contact'])->name('admin_contact_page')->middleware('admin:admin');
 route::post('admin/page-contact-update', [AdminPageController::class, 'contact_update'])->name('admin_page_contact_update')->middleware('admin:admin');
+
+/* Admin Page Photo Gallery Route */
+
+route::get('admin/photo_gallery-page', [AdminPageController::class, 'photo_gallery'])->name('admin_photo_gallery_page')->middleware('admin:admin');
+route::post('admin/page-photo_gallery-update', [AdminPageController::class, 'photo_gallery_update'])->name('admin_page_photo_gallery_update')->middleware('admin:admin');
+
+/* Admin Page Video Gallery Route */
+
+route::get('admin/video_gallery-page', [AdminPageController::class, 'video_gallery'])->name('admin_video_gallery_page')->middleware('admin:admin');
+route::post('admin/page-video_gallery-update', [AdminPageController::class, 'video_gallery_update'])->name('admin_page_video_gallery_update')->middleware('admin:admin');
+
+/* Admin Page Faq Route */
+
+route::get('admin/faq-page', [AdminPageController::class, 'faq'])->name('admin_faq_page')->middleware('admin:admin');
+route::post('admin/page-faq-update', [AdminPageController::class, 'faq_update'])->name('admin_page_faq_update')->middleware('admin:admin');
+
+/* Admin Page Blog Route */
+
+route::get('admin/blog-page', [AdminPageController::class, 'blog'])->name('admin_blog_page')->middleware('admin:admin');
+route::post('admin/page-blog-update', [AdminPageController::class, 'blog_update'])->name('admin_page_blog_update')->middleware('admin:admin');
+
+/* Admin Page Cart Route */
+
+route::get('admin/cart-page', [AdminPageController::class, 'cart'])->name('admin_cart_page')->middleware('admin:admin');
+route::post('admin/page-cart-update', [AdminPageController::class, 'cart_update'])->name('admin_page_cart_update')->middleware('admin:admin');
+
+/* Admin Page Checkout Route */
+
+route::get('admin/checkout-page', [AdminPageController::class, 'checkout'])->name('admin_checkout_page')->middleware('admin:admin');
+route::post('admin/page-checkout-update', [AdminPageController::class, 'checkout_update'])->name('admin_page_checkout_update')->middleware('admin:admin');
+
+/* Admin Page Payment Route */
+
+route::get('admin/payment-page', [AdminPageController::class, 'payment'])->name('admin_payment_page')->middleware('admin:admin');
+route::post('admin/page-payment-update', [AdminPageController::class, 'payment_update'])->name('admin_page_payment_update')->middleware('admin:admin');
+
+/* Admin Page Sign Up Route */
+
+route::get('admin/signup-page', [AdminPageController::class, 'signup'])->name('admin_signup_page')->middleware('admin:admin');
+route::post('admin/page-signup-update', [AdminPageController::class, 'signup_update'])->name('admin_page_signup_update')->middleware('admin:admin');
+
+/* Admin Page Sign in Route */
+
+route::get('admin/signin-page', [AdminPageController::class, 'signin'])->name('admin_signin_page')->middleware('admin:admin');
+route::post('admin/page-signin-update', [AdminPageController::class, 'signin_update'])->name('admin_page_signin_update')->middleware('admin:admin');
+
+/* Admin Page Subscriber Route */
+
+route::get('admin/subscriber-show', [AdminSubscriberController::class, 'show'])->name('admin_subscriber_show')->middleware('admin:admin');
+route::get('admin/subscriber/send-email', [AdminSubscriberController::class, 'send_email'])->name('admin_subscriber_send_email')->middleware('admin:admin');
+route::post('admin/subscriber/send-email-submit', [AdminSubscriberController::class, 'send_email_submit'])->name('admin_subscriber_send_email_submit')->middleware('admin:admin');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
