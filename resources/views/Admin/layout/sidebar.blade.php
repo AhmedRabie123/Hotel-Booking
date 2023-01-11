@@ -10,7 +10,30 @@
         <ul class="sidebar-menu">
 
             <li class="{{ Request::is('admin/home') ? 'active' : '' }}"><a class="nav-link"
-                    href="{{ route('admin_home') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a></li>
+                    href="{{ route('admin_home') }}"><i class="fa fa-hand-o-right"></i> <span>Dashboard</span></a>
+            </li>
+
+
+            <li
+                class="nav-item dropdown {{ Request::is('admin/amenity-view') || Request::is('admin/room-view') ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Room Section
+                    </span></a>
+                <ul class="dropdown-menu">
+
+                    <li class="{{ Request::is('admin/amenity-view') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_amenity_view') }}"><i class="fa fa-angle-right"></i> All
+                            Amenities</a>
+                    </li>
+
+                    <li class="{{ Request::is('admin/room-view') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_room_view') }}"><i class="fa fa-angle-right"></i> Hotel
+                            Rooms & Suites</a>
+                    </li>
+
+
+                </ul>
+            </li>
+
 
 
 
@@ -21,7 +44,8 @@
                 <ul class="dropdown-menu">
 
                     <li class="{{ Request::is('admin/about-page') ? 'active' : '' }}"><a class="nav-link"
-                            href="{{ route('admin_about_page') }}"><i class="fa fa-angle-right"></i> About Page</a></li>
+                            href="{{ route('admin_about_page') }}"><i class="fa fa-angle-right"></i> About Page</a>
+                    </li>
 
                     <li class="{{ Request::is('admin/terms-page') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_terms_page') }}"><i class="fa fa-angle-right"></i> Terms &
@@ -113,7 +137,8 @@
 
 
 
-            <li class="nav-item dropdown {{ Request::is('admin/subscriber-show') || Request::is('admin/subscriber/send-email') ? 'active' : '' }}">
+            <li
+                class="nav-item dropdown {{ Request::is('admin/subscriber-show') || Request::is('admin/subscriber/send-email') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Subscribers
                     </span></a>
                 <ul class="dropdown-menu">
