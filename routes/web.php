@@ -254,8 +254,10 @@ route::get('admin/room-edit/{id}', [AdminRoomController::class, 'room_edit'])->n
 route::post('admin/room-update/{id}', [AdminRoomController::class, 'room_update'])->name('admin_room_update')->middleware('admin:admin');
 route::get('admin/room-delete/{id}', [AdminRoomController::class, 'room_delete'])->name('admin_room_delete')->middleware('admin:admin');
 
-
-
+/* Admin Room Gallery Route */
+route::get('admin/room-gallery/{id}', [AdminRoomController::class, 'room_gallery'])->name('admin_room_gallery')->middleware('admin:admin');
+route::post('admin/room-gallery-store/{id}', [AdminRoomController::class, 'gallery_store'])->name('admin_room_gallery_store')->middleware('admin:admin');
+route::get('admin/room-gallery-delete/{id}', [AdminRoomController::class, 'gallery_delete'])->name('admin_room_gallery_delete')->middleware('admin:admin');
 
 
 

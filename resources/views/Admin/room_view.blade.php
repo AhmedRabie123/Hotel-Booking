@@ -40,13 +40,17 @@
                                             <td>{{ $row->name }}</td>
                                             <td>${{ $row->price }}</td>
                                             <td class="pt_10 pb_10">
-                                                <button class="btn btn-warning" data-toggle="modal"
+                                                <button class="btn btn-warning btn-sm" data-toggle="modal"
                                                     data-target="#exampleModal{{ $i }}">
                                                     Detail
                                                 </button>
+                                                <a href="{{ route('admin_room_gallery', $row->id) }}"
+                                                    class="btn btn-success btn-sm">Room Gallery</a>
+
                                                 <a href="{{ route('admin_room_edit', $row->id) }}"
-                                                    class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('admin_room_delete', $row->id) }}" class="btn btn-danger"
+                                                    class="btn btn-primary btn-sm">Edit</a>
+
+                                                <a href="{{ route('admin_room_delete', $row->id) }}" class="btn btn-danger btn-sm"
                                                     onClick="return confirm('Are you sure?');">Delete</a>
                                             </td>
 
@@ -73,7 +77,7 @@
                                                                     class="w_200" alt="">
                                                             </div>
                                                         </div>
-                                                         
+
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Name</label>
                                                             </div>
@@ -96,23 +100,25 @@
                                                         </div>
 
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Total Rooms</label>
+                                                            <div class="col-md-4"><label class="form-label">Total
+                                                                    Rooms</label>
                                                             </div>
                                                             <div class="col-md-8">{{ $row->total_rooms }}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Amenities</label>
+                                                            <div class="col-md-4"><label
+                                                                    class="form-label">Amenities</label>
                                                             </div>
                                                             <div class="col-md-8">
-                                                              @php
-                                                                  $arr = explode(',', $row->amenities);
-                                                                  for ($j=0; $j < count($arr); $j++) { 
-                                                                      $temp_row = \App\Models\Amenity::where('id', $arr[$j])->first();
-                                                                      echo $temp_row->name. '<br>';
-                                                                  }
-                                                              @endphp
+                                                                @php
+                                                                    $arr = explode(',', $row->amenities);
+                                                                    for ($j = 0; $j < count($arr); $j++) {
+                                                                        $temp_row = \App\Models\Amenity::where('id', $arr[$j])->first();
+                                                                        echo $temp_row->name . '<br>';
+                                                                    }
+                                                                @endphp
                                                             </div>
                                                         </div>
 
@@ -124,28 +130,32 @@
                                                         </div>
 
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Total Beds</label>
+                                                            <div class="col-md-4"><label class="form-label">Total
+                                                                    Beds</label>
                                                             </div>
                                                             <div class="col-md-8">{{ $row->total_beds }}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Total Bathrooms</label>
+                                                            <div class="col-md-4"><label class="form-label">Total
+                                                                    Bathrooms</label>
                                                             </div>
                                                             <div class="col-md-8">{{ $row->total_bathrooms }}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Total Balconies</label>
+                                                            <div class="col-md-4"><label class="form-label">Total
+                                                                    Balconies</label>
                                                             </div>
                                                             <div class="col-md-8">{{ $row->total_balconies }}
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Total Guests</label>
+                                                            <div class="col-md-4"><label class="form-label">Total
+                                                                    Guests</label>
                                                             </div>
                                                             <div class="col-md-8">{{ $row->total_guests }}
                                                             </div>
@@ -156,10 +166,10 @@
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <iframe width="260" height="215"
-                                                                src="https://www.youtube.com/embed/{{ $row->video_id }}"
-                                                                title="YouTube video player" frameborder="0"
-                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                allowfullscreen></iframe>
+                                                                    src="https://www.youtube.com/embed/{{ $row->video_id }}"
+                                                                    title="YouTube video player" frameborder="0"
+                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                    allowfullscreen></iframe>
                                                             </div>
                                                         </div>
 
