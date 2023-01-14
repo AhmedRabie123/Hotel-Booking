@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Feature;
 use App\Models\Post;
+use App\Models\Room;
 use App\Models\Testimonial;
 
 class HomeController extends Controller
@@ -17,6 +18,7 @@ class HomeController extends Controller
         $features = Feature::limit(8)->get();
         $testimonials = Testimonial::get();
         $posts = Post::orderBy('id','desc')->limit(3)->get();
-        return view('Front.home', compact('slider', 'features', 'testimonials', 'posts'));
+        $room_all = Room::limit(12)->get();
+        return view('Front.home', compact('slider', 'features', 'testimonials', 'posts', 'room_all'));
     }
 }

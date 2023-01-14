@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('faq_status');
             $table->string('blog_heading');
             $table->string('blog_status');
+            $table->string('room_heading');
             $table->string('cart_heading');
             $table->string('cart_status');
             $table->string('checkout_heading');

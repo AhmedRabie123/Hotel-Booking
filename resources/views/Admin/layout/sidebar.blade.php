@@ -38,7 +38,7 @@
 
 
             <li
-                class="nav-item dropdown {{ Request::is('admin/about-page') || Request::is('admin/terms-page') || Request::is('admin/privacy-page') || Request::is('admin/contact-page') || Request::is('admin/photo_gallery-page') || Request::is('admin/video_gallery-page') || Request::is('admin/faq-page') || Request::is('admin/blog-page') || Request::is('admin/cart-page') || Request::is('admin/checkout-page') || Request::is('admin/payment-page') || Request::is('admin/signup-page') || Request::is('admin/signin-page') ? 'active' : '' }}">
+                class="nav-item dropdown {{ Request::is('admin/about-page') || Request::is('admin/terms-page') || Request::is('admin/privacy-page') || Request::is('admin/contact-page') || Request::is('admin/photo_gallery-page') || Request::is('admin/video_gallery-page') || Request::is('admin/faq-page') || Request::is('admin/blog-page') || Request::is('admin/room-page')  || Request::is('admin/cart-page') || Request::is('admin/checkout-page') || Request::is('admin/payment-page') || Request::is('admin/signup-page') || Request::is('admin/signin-page') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fa fa-hand-o-right"></i><span>Home
                         Page</span></a>
                 <ul class="dropdown-menu">
@@ -77,6 +77,11 @@
                     <li class="{{ Request::is('admin/blog-page') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_blog_page') }}"><i class="fa fa-angle-right"></i>
                             Blog Page
+                        </a></li>
+
+                        <li class="{{ Request::is('admin/room-page') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_room_page') }}"><i class="fa fa-angle-right"></i>
+                            Room Page
                         </a></li>
 
                     <li class="{{ Request::is('admin/cart-page') ? 'active' : '' }}"><a class="nav-link"
