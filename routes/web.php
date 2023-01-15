@@ -40,6 +40,11 @@ use App\Http\Controllers\Admin\AdminRoomController;
 
 
 
+/* Customer Route */
+use App\Http\Controllers\Customer\CustomerHomeController;
+use App\Http\Controllers\Customer\CustomerAuthController;
+
+
 /* Front Route */
 
 // Home Page
@@ -88,6 +93,25 @@ route::get('room-detail/{id}', [RoomController::class, 'detail'])->name('room_de
 
 
 
+/* Customer Route */
+route::get('customer/login', [CustomerAuthController::class, 'login'])->name('customer_login');
+route::post('customer/login-submit', [CustomerAuthController::class, 'login_submit'])->name('customer_login_submit');
+route::get('customer/logout', [CustomerAuthController::class, 'customer_logout'])->name('customer_logout')->middleware('customer:customer');
+route::get('customer/signup', [CustomerAuthController::class, 'signup'])->name('customer_signup');
+route::Post('customer/signup-submit', [CustomerAuthController::class, 'signup_submit'])->name('customer_signup_submit');
+route::get('signup/verify/{email}/{token}', [CustomerAuthController::class, 'signup_verify'])->name('customer_signup_verify');
+
+
+/* Customer Middleware Route */
+route::group(['middleware' => ['customer:customer']], function(){
+
+route::get('customer/home', [CustomerHomeController::class, 'index'])->name('customer_home');
+route::get('customer/edit-profile', [CustomerProfileController::class, 'customer_profile'])->name('customer_edit_profile');
+route::post('customer/profile-submit', [CustomerProfileController::class, 'profile_submit'])->name('customer_profile_submit');
+
+
+
+});
 
 
 /* Admin Login Route */
@@ -100,6 +124,8 @@ route::post('admin/forget-password-submit', [AdminLoginController::class, 'forge
 route::get('admin/reset-password/{token}/{email}', [AdminLoginController::class, 'reset_password'])->name('admin_reset_password');
 route::post('admin/reset-password/submit', [AdminLoginController::class, 'reset_password_submit'])->name('admin_reset_password_submit');
 
+
+/* Admin Middleware Route */
 route::group(['middleware' => ['admin:admin']], function(){
 /* Admin Profile Route */
 

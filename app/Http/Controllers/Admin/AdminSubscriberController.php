@@ -44,4 +44,5 @@ class AdminSubscriberController extends Controller
         return redirect()->route('admin_home')->with('success', 'E-Mail Is Sent Successfully.');
 
     }
+
 }
