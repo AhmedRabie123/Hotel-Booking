@@ -1,6 +1,6 @@
 @extends('Admin.layout.app')
 
-@section('heading', 'Edit Profile')
+@section('heading', 'Edit Admin Profile')
 
 @section('main_content')
 

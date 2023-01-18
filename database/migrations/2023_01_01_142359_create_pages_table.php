@@ -45,6 +45,8 @@ return new class extends Migration
             $table->string('signup_status');
             $table->string('signin_heading');
             $table->string('signin_status');
+            $table->string('forget_password_heading');
+            $table->string('reset_password_heading');
             $table->timestamps();
         });
     }

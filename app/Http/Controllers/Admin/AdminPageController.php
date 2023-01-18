@@ -262,4 +262,38 @@ class AdminPageController extends Controller
 
     }
 
+    public function forget_password()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_forget_password', compact('page_data'));
+    }
+
+    public function forget_password_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->forget_password_heading = $request->forget_password_heading;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Forget Password Page Updated Successfully');
+
+    }
+
+    public function reset_password()
+    {
+        $page_data = Page::where('id', 1)->first();
+        return view('Admin.page_reset_password', compact('page_data'));
+    }
+
+    public function reset_password_update(Request $request)
+    {
+        $page_data = Page::where('id', 1)->first();
+
+        $page_data->reset_password_heading = $request->reset_password_heading;
+        $page_data->update();
+
+        return redirect()->route('admin_home')->with('success', 'Reset Password Page Updated Successfully');
+
+    }
+
 }

@@ -54,11 +54,15 @@
                         @endif
 
                         @if ($global_page_data->signup_status == 'Show')
-                            <li class="menu"><a href="{{ route('customer_signup') }}">{{ $global_page_data->signup_heading }}</a></li>
+                            <li class="menu"><a
+                                    href="{{ route('customer_signup') }}">{{ $global_page_data->signup_heading }}</a>
+                            </li>
                         @endif
 
                         @if ($global_page_data->signin_status == 'Show')
-                            <li class="menu"><a href="{{ route('customer_login') }}">{{ $global_page_data->signin_heading }}</a></li>
+                            <li class="menu"><a
+                                    href="{{ route('customer_login') }}">{{ $global_page_data->signin_heading }}</a>
+                            </li>
                         @endif
 
                     </ul>
@@ -73,7 +77,7 @@
         <!-- Menu For Mobile Device -->
         <div class="mobile-nav">
             <a href="index.html" class="logo">
-                <img src="uploads/logo.png" alt="">
+                <img src="{{ asset('uploads/logo.png') }}" alt="">
             </a>
         </div>
 
@@ -102,9 +106,10 @@
                                 <ul class="dropdown-menu">
 
                                     @foreach ($global_room_data as $item)
-                                    <li class="nav-item">
-                                        <a href="{{ route('room_detail', $item->id) }}" class="nav-link">{{ $item->name }}</a>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a href="{{ route('room_detail', $item->id) }}"
+                                                class="nav-link">{{ $item->name }}</a>
+                                        </li>
                                     @endforeach
 
                                 </ul>

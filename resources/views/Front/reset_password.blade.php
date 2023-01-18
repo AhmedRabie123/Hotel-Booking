@@ -1,12 +1,16 @@
 @extends('Front.layout.app')
 
 @section('main_content')
+
+    @extends('Front.layout.app')
+
+@section('main_content')
     <div class="page-top">
         <div class="bg"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>{{ $global_page_data->signin_heading }}</h2>
+                    <h2>{{ $global_page_data->reset_password_heading }}</h2>
                 </div>
             </div>
         </div>
@@ -16,30 +20,32 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-4">
-                    <form action="{{ route('customer_login_submit') }}" method="post">
+                    <form action="{{ route('customer_reset_password_submit') }}" method="post">
                         @csrf
+
+                        <input type="hidden" name="token" value="{{ $token }}">
+                        <input type="hidden" name="email" value="{{ $email }}">
+
                         <div class="login-form">
                             <div class="mb-3">
-                                <label for="" class="form-label">Email Address</label>
-                                <input type="text" class="form-control" name="email">
-                                @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                                @endif
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Password</label>
+                                <label for="" class="form-label">Enter New Password</label>
                                 <input type="password" class="form-control" name="password">
                                 @if ($errors->has('password'))
                                     <span class="text-danger">{{ $errors->first('password') }}</span>
                                 @endif
                             </div>
+
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary bg-website">Login</button>
-                                <a href="{{ route('customer_forget_password') }}" class="primary-color">Forget Password?</a>
+                                <label for="" class="form-label">Retype New Password</label>
+                                <input type="password" class="form-control" name="retype_password">
+                                @if ($errors->has('retype_password'))
+                                    <span class="text-danger">{{ $errors->first('retype_password') }}</span>
+                                @endif
                             </div>
+
                             <div class="mb-3">
-                                <a href="{{ route('customer_signup') }}" class="primary-color">New User? Make
-                                    Registration</a>
+                                <button type="submit" class="btn btn-primary bg-website">Update Password</button>
+                                <a href="{{ route('customer_login') }}" class="primary-color">Back to Login Page</a>
                             </div>
                         </div>
                     </form>
@@ -47,4 +53,7 @@
             </div>
         </div>
     </div>
+@endsection
+
+
 @endsection

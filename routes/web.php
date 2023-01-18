@@ -43,6 +43,7 @@ use App\Http\Controllers\Admin\AdminRoomController;
 /* Customer Route */
 use App\Http\Controllers\Customer\CustomerHomeController;
 use App\Http\Controllers\Customer\CustomerAuthController;
+use App\Http\Controllers\Customer\CustomerProfileController;
 
 
 /* Front Route */
@@ -100,6 +101,12 @@ route::get('customer/logout', [CustomerAuthController::class, 'customer_logout']
 route::get('customer/signup', [CustomerAuthController::class, 'signup'])->name('customer_signup');
 route::Post('customer/signup-submit', [CustomerAuthController::class, 'signup_submit'])->name('customer_signup_submit');
 route::get('signup/verify/{email}/{token}', [CustomerAuthController::class, 'signup_verify'])->name('customer_signup_verify');
+
+/* Customer forget password and reset password Route */
+route::get('customer/forget-password', [CustomerAuthController::class, 'forget_password'])->name('customer_forget_password');
+route::post('customer/forget-password-submit', [CustomerAuthController::class, 'forget_password_submit'])->name('customer_forget_password_submit');
+route::get('customer/reset-password/{email}/{token}', [CustomerAuthController::class, 'reset_password'])->name('customer_reset_password');
+route::post('customer/reset-password/submit', [CustomerAuthController::class, 'reset_password_submit'])->name('customer_reset_password_submit');
 
 
 /* Customer Middleware Route */
@@ -268,6 +275,16 @@ route::post('admin/page-signup-update', [AdminPageController::class, 'signup_upd
 
 route::get('admin/signin-page', [AdminPageController::class, 'signin'])->name('admin_signin_page');
 route::post('admin/page-signin-update', [AdminPageController::class, 'signin_update'])->name('admin_page_signin_update');
+
+/* Admin Page Forget Password Route */
+
+route::get('admin/forget_password-page', [AdminPageController::class, 'forget_password'])->name('admin_forget_password_page');
+route::post('admin/page-forget_password-update', [AdminPageController::class, 'forget_password_update'])->name('admin_page_forget_password_update');
+
+/* Admin Page Reset Password Route */
+
+route::get('admin/reset_password-page', [AdminPageController::class, 'reset_password'])->name('admin_reset_password_page');
+route::post('admin/page-reset_password-update', [AdminPageController::class, 'reset_password_update'])->name('admin_page_reset_password_update');
 
 /* Admin Page Subscriber Route */
 
