@@ -16,6 +16,7 @@ use App\Http\Controllers\Front\PrivacyController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\RoomController;
+use App\Http\Controllers\Front\BookingController;
 
 
 
@@ -91,7 +92,13 @@ route::get('room', [RoomController::class, 'index'])->name('room_data');
 // Room Detail Page
 route::get('room-detail/{id}', [RoomController::class, 'detail'])->name('room_detail');
 
+// Room Booking Cart && Cart View && Cart Delete Page
+route::post('booking/submit', [BookingController::class, 'cart_submit'])->name('cart_submit');
+route::get('cart-view', [BookingController::class, 'cart_view'])->name('cart');
+route::get('cart/delete/{id}', [BookingController::class, 'cart_delete'])->name('cart_delete');
 
+// Cart CheckOut Page
+route::get('checkout-view', [BookingController::class, 'checkout'])->name('checkout');
 
 
 /* Customer Route */

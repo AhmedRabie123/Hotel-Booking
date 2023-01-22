@@ -45,25 +45,34 @@
                     <ul class="right">
 
                         @if ($global_page_data->cart_status == 'Show')
-                            <li class="menu"><a href="cart.html">{{ $global_page_data->cart_heading }}</a></li>
+                            <li class="menu"><a href="{{ route('cart') }}">{{ $global_page_data->cart_heading }}</a>
+                            </li>
                         @endif
 
                         @if ($global_page_data->checkout_status == 'Show')
-                            <li class="menu"><a href="checkout.html">{{ $global_page_data->checkout_heading }}</a>
+                            <li class="menu"><a
+                                    href="{{ route('checkout') }}">{{ $global_page_data->checkout_heading }}</a>
                             </li>
                         @endif
 
-                        @if ($global_page_data->signup_status == 'Show')
-                            <li class="menu"><a
-                                    href="{{ route('customer_signup') }}">{{ $global_page_data->signup_heading }}</a>
+                        @if (!Auth::guard('customer')->check())
+                            @if ($global_page_data->signup_status == 'Show')
+                                <li class="menu"><a
+                                        href="{{ route('customer_signup') }}">{{ $global_page_data->signup_heading }}</a>
+                                </li>
+                            @endif
+
+                            @if ($global_page_data->signin_status == 'Show')
+                                <li class="menu"><a
+                                        href="{{ route('customer_login') }}">{{ $global_page_data->signin_heading }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="menu"><a href="{{ route('customer_home') }}">Dashboard</a>
                             </li>
                         @endif
 
-                        @if ($global_page_data->signin_status == 'Show')
-                            <li class="menu"><a
-                                    href="{{ route('customer_login') }}">{{ $global_page_data->signin_heading }}</a>
-                            </li>
-                        @endif
+
 
                     </ul>
                 </div>

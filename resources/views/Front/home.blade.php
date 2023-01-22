@@ -30,18 +30,17 @@
 
     <div class="search-section">
         <div class="container">
-            <form action="cart.html" method="post">
+            <form action="{{ route('cart_submit') }}" method="post">
+                @csrf
                 <div class="inner">
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <select name="" class="form-select">
+                                <select name="room_id" class="form-select">
                                     <option value="">Select Room</option>
-                                    <option value="">Standard Couple Bed Room</option>
-                                    <option value="">Delux Couple Bed Room</option>
-                                    <option value="">Standard Four Bed Room</option>
-                                    <option value="">Delux Four Bed Room</option>
-                                    <option value="">VIP Special Room</option>
+                                    @foreach ($room_all as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -53,13 +52,13 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="number" name="" class="form-control" min="1" max="30"
+                                <input type="number" name="adult" class="form-control" min="0" max="30"
                                     placeholder="Adults">
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="number" name="" class="form-control" min="1" max="30"
+                                <input type="number" name="children" class="form-control" min="0" max="30"
                                     placeholder="Children">
                             </div>
                         </div>
@@ -71,7 +70,6 @@
             </form>
         </div>
     </div>
-
 
 
     <div class="home-feature">
@@ -114,10 +112,9 @@
             <div class="row">
 
                 @foreach ($room_all as $item)
+                    {{-- I did not apply if condition in the bottom line because I used the limit in HomeController in line 21 --}}
 
-                {{-- I did not apply if condition in the bottom line because I used the limit in HomeController in line 21 --}}
-
-                {{-- @if ($loop->iteration > 3)
+                    {{-- @if ($loop->iteration > 3)
                     @break
                 @endif --}}
 

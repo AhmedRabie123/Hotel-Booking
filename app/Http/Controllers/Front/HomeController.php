@@ -17,7 +17,7 @@ class HomeController extends Controller
         $slider = Slider::get();
         $features = Feature::limit(8)->get();
         $testimonials = Testimonial::get();
-        $posts = Post::orderBy('id','desc')->limit(3)->get();
+        $posts = Post::orderBy('id', 'desc')->limit(3)->get();
         $room_all = Room::limit(12)->get();
         return view('Front.home', compact('slider', 'features', 'testimonials', 'posts', 'room_all'));
     }
