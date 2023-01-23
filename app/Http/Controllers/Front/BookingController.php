@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use Auth;
+// use PayPal\Api\Amount;
+// use PayPal\Api\Details;
+// use PayPal\Api\Payment;
+// use PayPal\Api\PaymentExecution;
+// use PayPal\Api\Transaction;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 
 class BookingController extends Controller
@@ -115,5 +121,139 @@ class BookingController extends Controller
         } else {
             return view('Front.checkout');
         }
+    }
+
+    public function payment(Request $request)
+    {
+
+        if (!Auth::guard('customer')->check()) {
+            return redirect()->route('customer_login')->with('error', 'You Must Have To Login In Order To Checkout!');
+        }
+
+        if (!session()->has('cart_room_id')) {
+            return redirect()->back()->with('error', 'There Is No Item In The Cart!');
+        } else {
+
+            $request->validate([
+                'billing_name' => 'required',
+                'billing_email' => 'required|email',
+                'billing_phone' => 'required',
+                'billing_country' => 'required',
+                'billing_address' => 'required',
+                'billing_state' => 'required',
+                'billing_city' => 'required',
+                'billing_zip' => 'required'
+            ]);
+
+            session()->put('billing_name', $request->billing_name);
+            session()->put('billing_email', $request->billing_email);
+            session()->put('billing_phone', $request->billing_phone);
+            session()->put('billing_country', $request->billing_country);
+            session()->put('billing_address', $request->billing_address);
+            session()->put('billing_state', $request->billing_state);
+            session()->put('billing_city', $request->billing_city);
+            session()->put('billing_zip', $request->billing_zip);
+
+            return view('Front.payment');
+        }
+    }
+
+    public function paypal()
+    {
+
+        $final_price = '5';
+
+        $provider = new PayPalClient();
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+
+        $response = $provider->createOrder([
+            "intent" => "CAPTURE",
+            "application_context" => [
+                "return_url" => route('paypal_success'),
+                "cancel_url" => route('paypal_success')
+            ],
+            "purchase_units" => [
+                [
+                    "amount" => [
+                        "currency_code" => "USD",
+                        "value" => $final_price
+                    ]
+                ]
+            ]
+        ]);
+
+        // dd($response);
+
+        if (isset($response['id']) && $response['id'] != Null) {
+            foreach ($response['links'] as $link) {
+                if ($link['rel'] == 'approve') {
+                    return redirect()->away($link['href']);
+                }
+            }
+        } else {
+            return redirect()->route('paypal_cancel');
+        }
+
+
+
+        // $client = 'ARLqUMmT--JqQEes4U8YHVfovFGzZcK8Bba-qj1ia9WKtW46A8BHF9OeW7R0qYsFhqzNQOO55Vyit6aj';
+        // $secret = 'ENhRgjXBNfPqBQgzZCzalNTOp9uex-Zlq9RJ3zVUdZpcYoFIdKmyPWN3Bj8eGeI4kV65J5NpSDGxZgNJ';
+
+        // $apiContext = new \PayPal\Rest\PayPalClient(
+        //     new \PayPal\Auth\OAuthTokenCredential(
+        //         $client, // ClientID
+        //         $secret // ClientSecret
+        //     )
+        // );
+
+
+        // $paymentId = request('paymentId');
+        // $payment = PayPalClient::get($paymentId, $apiContext);
+
+        // $execution = new PaymentExecution();
+        // $execution->setPayerId(request('PayerID'));
+
+        // $transaction = new Transaction();
+        // $amount = new Amount();
+        // $details = new Details();
+
+        // $details->setShipping(0)
+        //     ->setTax(0)
+        //     ->setSubtotal($final_price);
+
+        // $amount->setCurrency('USD');
+        // $amount->setTotal($final_price);
+        // $amount->setDetails($details);
+        // $transaction->setAmount($amount);
+
+        // $execution->addTransaction($transaction);
+
+        // $result = $payment->execute($execution, $apiContext);
+
+        // if ($result->state == 'approved') {
+        //     $paid_amount = $result->transactions[0]->amount->total;
+        // }
+    }
+
+    public function paypal_success(Request $request)
+    {
+        $provider = new PayPalClient();
+
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+
+        $response = $provider->capturePaymentOrder($request->token);
+
+        if (isset($response['status']) && $response['status'] == 'completed') {
+            return 'Payment is successfully';
+        } else {
+            return redirect()->route('paypal_cancel');
+        }
+    }
+
+    public function paypal_cancel()
+    {
+        return 'payment is canceled';
     }
 }
