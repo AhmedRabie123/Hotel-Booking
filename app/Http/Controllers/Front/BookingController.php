@@ -158,10 +158,10 @@ class BookingController extends Controller
         }
     }
 
-    public function paypal()
+    public function paypal($final_price)
     {
 
-        $final_price = '5';
+        // $final_price = '5';
 
         $provider = new PayPalClient();
         $provider->setApiCredentials(config('paypal'));
@@ -246,8 +246,15 @@ class BookingController extends Controller
         $response = $provider->capturePaymentOrder($request->token);
 
         if (isset($response['status']) && $response['status'] == 'completed') {
+
+
+
+
             return 'Payment is successfully';
         } else {
+
+
+            
             return redirect()->route('paypal_cancel');
         }
     }
@@ -256,4 +263,5 @@ class BookingController extends Controller
     {
         return 'payment is canceled';
     }
+                 
 }

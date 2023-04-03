@@ -186,7 +186,7 @@
 
 @php
     $client = 'ARLqUMmT--JqQEes4U8YHVfovFGzZcK8Bba-qj1ia9WKtW46A8BHF9OeW7R0qYsFhqzNQOO55Vyit6aj';
-    $final_price = '5';
+    // $final_price = '5';
 @endphp
 
 <script>
@@ -206,11 +206,11 @@
 		payment: function (data, actions) {
 			return actions.payment.create({
 				redirect_urls:{
-					return_url: '{{ url("payment/paypal") }}'
+					return_url: '{{ url("payment/paypal/$total_price") }}'
 				},
 				transactions: [{
 					amount: {
-						total: '{{ $final_price }}',
+						total: '{{ $total_price }}',
 						currency: 'USD'
 					}
 				}]

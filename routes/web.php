@@ -100,7 +100,7 @@ route::get('cart/delete/{id}', [BookingController::class, 'cart_delete'])->name(
 // Cart CheckOut && Payment Route Page
 route::get('checkout-view', [BookingController::class, 'checkout'])->name('checkout');
 route::post('payment', [BookingController::class, 'payment'])->name('payment');
-route::get('payment/paypal', [BookingController::class, 'paypal'])->name('paypal');
+route::get('payment/paypal/{price}', [BookingController::class, 'paypal'])->name('paypal');
 route::get('payment-success', [BookingController::class, 'paypal_success'])->name('paypal_success');
 route::get('payment-cancel', [BookingController::class, 'paypal_cancel'])->name('paypal_cancel');
 
