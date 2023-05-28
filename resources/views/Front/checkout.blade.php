@@ -29,74 +29,75 @@
                                   will take it from the database. --}}
 
                             @php
-                               if (session()->has('billing_name')) {
-                                $billing_name = session()->get('billing_name');
-                               } else {
-                                $billing_name = Auth::guard('customer')->user()->name;
-                               }
+                                if (session()->has('billing_name')) {
+                                    $billing_name = session()->get('billing_name');
+                                } else {
+                                    $billing_name = Auth::guard('customer')->user()->name;
+                                }
 
-                               if (session()->has('billing_email')) {
-                                $billing_email = session()->get('billing_email');
-                               } else {
-                                $billing_email = Auth::guard('customer')->user()->email;
-                               }
+                                if (session()->has('billing_email')) {
+                                    $billing_email = session()->get('billing_email');
+                                } else {
+                                    $billing_email = Auth::guard('customer')->user()->email;
+                                }
 
-                               if (session()->has('billing_phone')) {
-                                $billing_phone = session()->get('billing_phone');
-                               } else {
-                                $billing_phone = Auth::guard('customer')->user()->phone;
-                               }
+                                if (session()->has('billing_phone')) {
+                                    $billing_phone = session()->get('billing_phone');
+                                } else {
+                                    $billing_phone = Auth::guard('customer')->user()->phone;
+                                }
 
-                               if (session()->has('billing_country')) {
-                                $billing_country = session()->get('billing_country');
-                               } else {
-                                $billing_country = Auth::guard('customer')->user()->country;
-                               }
+                                if (session()->has('billing_country')) {
+                                    $billing_country = session()->get('billing_country');
+                                } else {
+                                    $billing_country = Auth::guard('customer')->user()->country;
+                                }
 
-                               if (session()->has('billing_address')) {
-                                $billing_address = session()->get('billing_address');
-                               } else {
-                                $billing_address = Auth::guard('customer')->user()->address;
-                               }
+                                if (session()->has('billing_address')) {
+                                    $billing_address = session()->get('billing_address');
+                                } else {
+                                    $billing_address = Auth::guard('customer')->user()->address;
+                                }
+ 
+                                if (session()->has('billing_state')) {
+                                    $billing_state = session()->get('billing_state');
+                                } else {
+                                    $billing_state = Auth::guard('customer')->user()->state;
+                                }
 
-                               if (session()->has('billing_state')) {
-                                $billing_state = session()->get('billing_state');
-                               } else {
-                                $billing_state = Auth::guard('customer')->user()->state;
-                               }
+                                if (session()->has('billing_city')) {
+                                    $billing_city = session()->get('billing_city');
+                                } else {
+                                    $billing_city = Auth::guard('customer')->user()->city;
+                                }
 
-                               if (session()->has('billing_city')) {
-                                $billing_city = session()->get('billing_city');
-                               } else {
-                                $billing_city = Auth::guard('customer')->user()->city;
-                               }
-
-                               if (session()->has('billing_zip')) {
-                                $billing_zip = session()->get('billing_zip');
-                               } else {
-                                $billing_zip = Auth::guard('customer')->user()->zip;
-                               }
-                               
+                                if (session()->has('billing_zip')) {
+                                    $billing_zip = session()->get('billing_zip');
+                                } else {
+                                    $billing_zip = Auth::guard('customer')->user()->zip;
+                                }
+                                                                
+                                
                             @endphp
 
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label for="">Name: *</label>
-                                    <input type="text" class="form-control mb_15" name="billing_name" value="{{  $billing_name }}">
+                                    <input type="text" class="form-control mb_15" name="billing_name" value="{{ $billing_name }}">
                                     @if ($errors->has('billing_name'))
                                         <span class="text-danger">{{ $errors->first('billing_name') }}</span>
                                     @endif
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="">Email Address: *</label>
-                                    <input type="text" class="form-control mb_15" name="billing_email" value="{{  $billing_email }}">
+                                    <input type="text" class="form-control mb_15" name="billing_email" value="{{ $billing_email }}">
                                     @if ($errors->has('billing_email'))
                                         <span class="text-danger">{{ $errors->first('billing_email') }}</span>
                                     @endif
                                 </div>
                                 <div class="col-lg-6">
                                     <label for="">Phone Number: *</label>
-                                    <input type="text" class="form-control mb_15" name="billing_phone" value="{{  $billing_phone }}">
+                                    <input type="text" class="form-control mb_15" name="billing_phone" value="{{ $billing_phone }}">
                                     @if ($errors->has('billing_phone'))
                                         <span class="text-danger">{{ $errors->first('billing_phone') }}</span>
                                     @endif

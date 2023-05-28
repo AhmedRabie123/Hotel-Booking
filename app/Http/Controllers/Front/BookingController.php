@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Auth;
 // use PayPal\Api\Amount;
 // use PayPal\Api\Details;
@@ -247,6 +249,16 @@ class BookingController extends Controller
 
         if (isset($response['status']) && $response['status'] == 'completed') {
 
+            $obj = new Order();
+            $obj->customer_id = Auth::guard('customer')->user()->id;
+            $obj->order_no = 
+            $obj->transaction_id = 
+            $obj->payment_method = 
+            $obj->card_last_digit = 
+            $obj->paid_amount = 
+            $obj->booking_date	 = 
+            $obj->status = 'Completed';
+            $obj->save();
 
 
 
@@ -254,7 +266,7 @@ class BookingController extends Controller
         } else {
 
 
-            
+
             return redirect()->route('paypal_cancel');
         }
     }
@@ -263,5 +275,4 @@ class BookingController extends Controller
     {
         return 'payment is canceled';
     }
-                 
 }
